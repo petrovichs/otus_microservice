@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nsi-service
+spec:
+  selector:
+    app: nsi
+  ports:
+    - protocol: TCP
+      port: 9080
+      targetPort: 8080
+  type: NodePort
