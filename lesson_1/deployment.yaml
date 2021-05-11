@@ -16,7 +16,7 @@ spec:
       spec:
         containers:
           - name: nsi
-            image: linked/nsi:v1
+            image: gorshkovpsergey/nsi:v1
             ports:
               - containerPort: 8080
             livenessProbe:
