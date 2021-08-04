@@ -19,5 +19,23 @@ spec:
             - containerPort: 8080
               name: web
           env:
-            - name: MY_SECRET
-              value: MY_SECRET_VALUE!
+            - name: POSTGRES_SERVICE
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_SERVICE
+                  name: hello-secret
+            - name: POSTGRES_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB_NAME
+                  name: hello-secret
+            - name: POSTGRES_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB_USER
+                  name: hello-secret
+            - name: POSTGRES_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB_PASSWORD
+                  name: hello-secret
