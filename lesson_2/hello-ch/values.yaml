@@ -1,6 +1,0 @@
-replicaCount: 2
-image: gorshkovpsergey/nsi:v1
-
-service:
-  type: LoadBalancer
-  port: 9000

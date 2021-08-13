@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "hello-ch.fullname" . }}
+  name: {{ include "linkedin.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount}}
   selector:
     matchLabels:
-      {{- include "hello-ch.selectorLabels" . | nindent 6 }}
+      {{- include "linkedin.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "hello-ch.selectorLabels" . | nindent 8 }}
+        {{- include "linkedin.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image}}"
+          image: "{{ .Values.image.user}}"
           ports:
             - containerPort: 8080
               name: web
@@ -23,19 +23,19 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: POSTGRES_SERVICE
-                  name: hello-secret
+                  name: user-secret
             - name: POSTGRES_DB_NAME
               valueFrom:
                 secretKeyRef:
                   key: POSTGRES_DB_NAME
-                  name: hello-secret
+                  name: user-secret
             - name: POSTGRES_DB_USER
               valueFrom:
                 secretKeyRef:
                   key: POSTGRES_DB_USER
-                  name: hello-secret
+                  name: user-secret
             - name: POSTGRES_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: POSTGRES_DB_PASSWORD
-                  name: hello-secret
+                  name: user-secret

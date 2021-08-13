@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: hello-config
+  name: user-config
 data:
   GREETING: Bonjour
 
@@ -9,7 +9,7 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: hello-secret
+  name: user-secret
 data:
   POSTGRES_SERVICE: cG9zdGdyZXM=
   POSTGRES_DB_NAME: bXlhcHA=

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "linkedin.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount}}
+  selector:
+    matchLabels:
+      {{- include "linkedin.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "linkedin.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.nsi}}"
+          ports:
+            - containerPort: 8080
+              name: web
+          env:
+            - name: POSTGRES_SERVICE
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_SERVICE
+                  name: nsi-secret
+            - name: POSTGRES_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB_NAME
+                  name: nsi-secret
+            - name: POSTGRES_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB_USER
+                  name: nsi-secret
+            - name: POSTGRES_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB_PASSWORD
+                  name: nsi-secret

@@ -1,0 +1,12 @@
+replicaCount: 2
+image:
+  nsi: gorshkovpsergey/nsi:v1
+  user: gorshkovpsergey/user:v1
+
+service:
+  nsi:
+    type: NodePort
+    port: 9002
+  user:
+    type: NodePort
+    port: 9001

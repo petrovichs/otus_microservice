@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "linkedin.fullname" . }}
+  labels:
+    {{- include "linkedin.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "linkedin.selectorLabels" . | nindent 4 }}
+  ports:
+    - port: {{ .Values.service.user.port }}
+      targetPort: 8080
+      protocol: TCP
+
+  type: {{ .Values.service.user.type }}
